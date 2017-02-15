@@ -1,17 +1,16 @@
 package kz.epam.text.parser;
 
-
 import kz.epam.text.parser.composite.Element;
 import kz.epam.text.parser.composite.Symbol;
 import kz.epam.text.parser.composite.TextElement;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class Parser {
-    private static final String PARAGRAPH_SPLIT_REGEX = "(\\\\n|^).*?(?=\\\\n|$)";
-    private static final String SENTENCE_SPLIT_REGEX = "[^.!?\\\\s][^.!?]*(?:[.!?](?!['\\\"]?\\\\s|$)[^.!?]*)*[.!?]?['\\\"]?(?=\\\\s|$)";
-    private static final String WORD_SPLIT_REGEX = "([\\\\\\\\.,!\\\\\\\\?:;@]{1})|([^\\\\\\\\.,!\\\\\\\\?:;@]*)";
+    private static final String PARAGRAPH_SPLIT_REGEX = "(\\n|^).*?(?=\\n|$)";
+    private static final String SENTENCE_SPLIT_REGEX = "([\\s-А-ЯA-Z](|[^?!.\\(]|\\([^\\)]*\\))*[.?!])";
+    private static final String WORD_SPLIT_REGEX = "([\\\\.,!\\\\?:;@]{1})|([^\\\\.,!\\\\?:;@]*)";
 
     public Element parseText(String text) {
         Element fullText = new TextElement();
@@ -24,7 +23,7 @@ public class Parser {
         Matcher matcher = p.matcher(text);
         while (matcher.find()) {
             Element paragraph = new TextElement();
-            paragraph = parseSentence(paragraph, text);
+            paragraph = parseSentence(paragraph, matcher.group());
             fullText.add(paragraph);
         }
         return fullText;

@@ -22,11 +22,9 @@ public class ReaderAndWriter {
         return text.toString();
     }
 
-     public static void write(String str, String fileName) {
+    public static void write(String str, String fileName) {
         try (FileWriter fileWriter = new FileWriter(fileName)) {
-            for (int i = 0; i < str.length(); i++) {
-                fileWriter.append(str.charAt(i));
-            }
+            fileWriter.write(str);
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Couldn't write a file");

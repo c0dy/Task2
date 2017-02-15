@@ -1,9 +1,9 @@
 package kz.epam.text.main;
 
-
 import kz.epam.text.parser.Parser;
 import kz.epam.text.parser.composite.Element;
 import kz.epam.text.service.ReaderAndWriter;
+
 
 public class App {
     public static void main(String[] args) {

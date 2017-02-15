@@ -22,10 +22,10 @@ public class TextElement implements Element {
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder stringBuilder = new StringBuilder();
         for (Element e : elements) {
-            result += e.toString();
+            stringBuilder.append(e.toString());
         }
-        return result;
+        return stringBuilder.toString();
     }
 }
